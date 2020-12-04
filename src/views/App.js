@@ -1,7 +1,8 @@
 import React from 'react';
+import AppAbout from '../views/about';
 
 export default function App(){
     return(
-        <h1>Hello World</h1>
+        <AppAbout />
     )
 }

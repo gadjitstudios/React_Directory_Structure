@@ -1,0 +1,182 @@
+<link href="https://fonts.gstatic.com" rel="preconnect">
+</link>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&amp;family=Roboto+Mono:wght@500&amp;display=swap"
+    rel="stylesheet">
+</link>
+
+
+
+<style>
+    * {
+        font-size: large;
+        font-weight: lighter;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    dt {
+        font-size: x-large;
+        font-weight: bold;
+        font-family: 'Roboto Mono', monospace;
+    }
+
+    strong {
+        font-weight: bold;
+        color: orangered;
+        font-size: larger;
+    }
+
+    blockquote {
+        font-size: medium;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    var {
+        color: orange;
+        font-weight: bold;
+    }
+
+    a {
+        color: red !important;
+    }
+
+    a:visited {
+        color: orange;
+    }
+
+    .code {
+        border: white solid 1px;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: transparent;
+    }
+
+    .bg-photo-container {
+        visibility: hidden;
+    }
+</style>
+<section>
+    <dt>Introduction</dt>
+    <dd>
+        React is an very unopinionated language, which is great because it allows the developer(s) to create a
+        structure/style of coding that meets the needs of the project as opposed to a list of rules thought up by the
+        language's creators. There are some downsides to this, especially when you are beginning to learn the language.
+        One of the issues I had with my first React project was with the layout of my project's directory structure.
+        There are some resources out there to help you figure out somewhat of a basic structure; such as this article
+        from React's website:&nbsp; https<a
+            href="https://reactjs.org/docs/faq-structure.html">://reactjs.org/docs/faq-structure.html</a>; but, if you
+        dig any deeper you are likely to find some conflicting opinions.&nbsp;
+        <br />
+        There is one other important concept we must talk about before we get into the thick of it, and that is the idea
+        of single responsibility. Basically what this states is that a module must only be responsible for doing one
+        thing. We will add to this discussion on single responsibility when we start talking about the individual
+        directories; and what better time to do that then now. So<span style="letter-spacing: 0.2px;">, having said
+            that, I thought that I would throw my hat into the ring, and give you my opinion on a directory structure.
+            Here it is:</span>
+        <br />
+        <br />
+    </dd>
+    <dt>Components</dt>
+    <dd>I like to think of components as the "micro" level of React. These are small, reusable components such a custom
+        buttons, picture galleries, etc. The best way to figure out whether you're module should go in this directory is
+        to ask, "will I be able to rip this code out of this project and place it in a different one, and NOT require
+        any other modules (3rd party, such as Redux or Bootstrap, excluded)?" If the answer is yes, you are allowed to
+        add your module to the components directory. There are two more rules of the components directory that you must
+        follow:&nbsp;
+        <ul>
+            <li>each component must have its own directory inside of the components directory</li>
+            <li>each component directory inside of the components directory must contain only that components source
+                files</li>
+        </ul>
+    </dd>
+    <dt>Views</dt>
+    <dd>Views are made up of a collection of components from the component directory, and/or individual html elements. A
+        view's single responsibility is to display elements or components to the user. In doing this, a view will
+        collect data from other modules and use that data to produce the view. Remember, view only gathers this
+        information, it does nothing to produce it.&nbsp;</dd>
+    <br />
+    <dt>Services</dt>
+    <dd>A service is a module that is used to provide,&nbsp;validate, or manipulate data for use in another module. The
+        most common service I create in my React apps is an API service, who's single responsibility is to make REST
+        calls to servers (typically the app's backend). I have, in the past, also created a service to validate form
+        data using Regex checks. These are just some examples of what you might find in the services directory.
+    </dd>
+    <br />
+    <dt>Assets</dt>
+    <dd>This is a pretty common naming convention/ style. Typically the Assets directory contains image, logos, and
+        other resources used throughout the app. The Assets directory should contain other directories that will
+        organize these resources accordingly. Please do yourself a favor and do not just pile all of your resources
+        directly in the Assets directory. Also, remember that a view is responsible for collecting an assembling what
+        the user sees, so it is most likely that a majority of your resources will be imported in a view an passed to
+        other components.
+    </dd>
+    <br />
+    <dt>Stores</dt>
+    <dd>This directory is optional, and should only contain state store modules, such as a Redux store, a custom "use"
+        hook, etc. Basically, if it acts like a store, it goes here.</dd>
+    <br />
+    <dt>Common File Types</dt>
+    <dd>Now that we have our directories defined, we need to talk a little bit about the files you will find inside of a
+        directory, specifically the views and components directories. There are 3 common file types that these
+        directories should contain:
+        <ol>
+            <li>a React file (js or jsx)</li>
+            <li>a style file (css, sass, scss)</li>
+            <li>a data file (js, json, etc)</li>
+        </ol>
+        The first 2 are pretty self-explainitory, React files create React components (an import the other 2 file
+        types); and, the style file adds css to the React component. The last file, a data file, is one that we have not
+        really explored yet. This file's single responsibility is to collect data and supply that data to the React
+        component. This file should also handle cleaning and storing that data.
+        <br />
+    </dd>
+    <br />
+    <dt>Example</dt>
+    <dd>
+        <p>Just a note, the following example will use this git repo, <a
+                href="https://github.com/gadjitstudios/React_App_From_Scratch">https://github.com/gadjitstudios/React_App_From_Scratch</a>,
+            as a base. So, if you are following along, please go download/clone that repo and follow these directions:
+
+        <h3>What We Will Be Creating</h3>
+        <ul>
+            <li>a simple view</li>
+            <li>an image gallery component that retrieves images from the <a>assets</a> directory</li>
+            <li>an <a>api</a> service that will use the fetch api to get infromation from the National Weather Service
+                (I will be creating a blog post about this, stay tuned)</li>
+        </ul>
+        So, let's start out by creating the directories we mentioned in the descriptions above, like so:
+        <div class="separator" style="clear: both; text-align: center;"><a
+                href="https://1.bp.blogspot.com/-i221MII1Y-U/X8p0jVT75WI/AAAAAAAAAH8/U75ieBksKCcpXi2amgQ6_idfNDWoVOgbACLcBGAsYHQ/s543/Root%2BDir.png"
+                style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="543"
+                    data-original-width="307" height="640"
+                    src="https://1.bp.blogspot.com/-i221MII1Y-U/X8p0jVT75WI/AAAAAAAAAH8/U75ieBksKCcpXi2amgQ6_idfNDWoVOgbACLcBGAsYHQ/w362-h640/Root%2BDir.png"
+                    width="362" /></a></div>
+        Next, we will create our API Service. To do this, we will create an <a>api</a> directory within the
+        <a>services</a> directory like so:
+        <div class="separator" style="clear: both;"><a
+                href="https://1.bp.blogspot.com/-syj9jyYLYbA/X8qKILcA4xI/AAAAAAAAAIo/0XLijYOzg7wqo-CaJTV-HSX2FSMmO9TCgCLcBGAsYHQ/s222/API%2BService%2BDir.png"
+                style="display: block; padding: 1em 0px; text-align: center;"><img border="0" data-original-height="117"
+                    data-original-width="222" height="211"
+                    src="https://1.bp.blogspot.com/-syj9jyYLYbA/X8qKILcA4xI/AAAAAAAAAIo/0XLijYOzg7wqo-CaJTV-HSX2FSMmO9TCgCLcBGAsYHQ/w400-h211/API%2BService%2BDir.png"
+                    width="400" /></a></div>
+        After creating the <a>api</a> directory, create a file within it called <a>index.js</a>. This is a Webpack
+        short-cut, which allows us to shorten our import Url. I will call this out when we reach that point.
+        <div class="separator" style="clear: both;"><a
+                href="https://1.bp.blogspot.com/-lXqyY9g9pkY/X8qVALIUSfI/AAAAAAAAAJg/AF6cvXORpvEl32iI4CyGuFAkN-uMaHcXACLcBGAsYHQ/s211/API%2BService%2BIndex%2Bjs.png"
+                style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="400"
+                    data-original-height="136" data-original-width="211"
+                    src="https://1.bp.blogspot.com/-lXqyY9g9pkY/X8qVALIUSfI/AAAAAAAAAJg/AF6cvXORpvEl32iI4CyGuFAkN-uMaHcXACLcBGAsYHQ/s400/API%2BService%2BIndex%2Bjs.png" /></a>
+        </div>
+        Inside of the <a>index.js</a> file add the following code:
+        <script src="https://gist.github.com/gadjitstudios/a00f9f6e544d796f37c71dd37b0df4a0.js"></script>
+        I won't be describing what is going on in this file (that will be a different blog post), just know that this
+        file has created an <var>Api_Service</var> object that we can use by importing it into other modules
+        (<var>Api_Service</var> is a variable name, and could be named whatever you want). I will call this out when we
+        get to that step.
+        </p>
+    </dd>
+    <br />
+    <br />
+    <br />
+</section>

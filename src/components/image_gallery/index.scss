@@ -1,0 +1,22 @@
+$columns: 2;
+$gap: 8px;
+
+#row {  
+    padding: 0px;
+    -webkit-column-count: $columns;
+    -moz-column-count:    $columns;
+    column-count:         $columns;
+    -webkit-column-gap:   $gap;
+    -moz-column-gap:      $gap;
+    column-gap:           $gap;
+    -webkit-column-fill:   balance;
+    -moz-column-fill:      balance;
+    column-fill:           balance;
+}
+
+#row img {
+    min-width: 100% !important;
+    height: auto;
+    width: 100%;
+    object-fit: scale-down;
+}
